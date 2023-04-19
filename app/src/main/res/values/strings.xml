@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GenuineTask</string>
+    <string name="welcome_to">Welcome To</string>
+    <string name="application">Application</string>
+    <string name="image">image</string>
+    <string name="get_first_delivery_service">Get\nFirst Delivery Service</string>
+    <string name="best_quality_grocery_door_to_door">Best Quality\nGrocery Door to Door</string>
+    <string name="skip">SKIP</string>
+    <string name="next">NEXT</string>
 </resources>
