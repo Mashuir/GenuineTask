@@ -1,4 +1,4 @@
-package com.example.genuinetask.view;
+package com.example.genuinetask.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.genuinetask.MainActivity;
 import com.example.genuinetask.R;
 
 public class SplashScreenActivity extends AppCompatActivity {

@@ -1,14 +1,12 @@
-package com.example.genuinetask.view;
+package com.example.genuinetask.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -18,20 +16,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.genuinetask.IntroSlider;
-import com.example.genuinetask.MainActivity;
 import com.example.genuinetask.R;
 
 public class AppIntroActivity extends AppCompatActivity {
 
-    private TextView tvNext, tvSkip;
     private ViewPager viewPager;
     private LinearLayout layoutDots;
     private IntroSlider introPref;
     private int[] layouts;
-    private TextView[] dots;
-    private MyViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +37,10 @@ public class AppIntroActivity extends AppCompatActivity {
             finish();
         }
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                    View.SYSTEM_UI_FLAG_FULLSCREEN);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                View.SYSTEM_UI_FLAG_FULLSCREEN);
 
-        tvNext = findViewById(R.id.tvNext);
-        tvSkip = findViewById(R.id.tvSkip);
+        TextView tvSkip = findViewById(R.id.tvSkip);
         viewPager = findViewById(R.id.viewPager);
         layoutDots = findViewById(R.id.layoutDots);
 
@@ -59,15 +49,6 @@ public class AppIntroActivity extends AppCompatActivity {
                 R.layout.intro_two,
                 R.layout.intro_three
         };
-
-        tvNext.setOnClickListener(v -> {
-            int current = getItem(+1);
-            if (current < layouts.length) {
-                viewPager.setCurrentItem(current);
-            } else {
-                launchHomeScreen();
-            }
-        });
 
         tvSkip.setOnClickListener(v -> {
             int current = getItem(+1);
@@ -79,7 +60,7 @@ public class AppIntroActivity extends AppCompatActivity {
             }
         });
 
-        viewPagerAdapter = new MyViewPagerAdapter();
+        MyViewPagerAdapter viewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(onPageChangeListener);
 
@@ -103,11 +84,6 @@ public class AppIntroActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-            if (position == layouts.length - 1) {
-                tvNext.setText("START");
-            } else {
-                tvNext.setText("NEXT");
-            }
         }
 
         @Override
@@ -116,7 +92,7 @@ public class AppIntroActivity extends AppCompatActivity {
     };
 
     private void addBottomDots(int currentPage) {
-        dots = new TextView[layouts.length];
+        TextView[] dots = new TextView[layouts.length];
         int[] activeColors = getResources().getIntArray(R.array.active);
         int[] inActiveColors = getResources().getIntArray(R.array.inactive);
         layoutDots.removeAllViews();
