@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.genuinetask.R;
 import com.example.genuinetask.model.ProductModel;
 
@@ -38,7 +39,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         ProductModel model = productModelList.get(position);
 
-        //holder.productName.setText(model.getProductList().get(position).getName());
+        holder.productName.setText(model.getName());
+        Glide.with(context).load(model.getImagePath()).placeholder(R.drawable.broccoli).into(holder.productImage);
     }
 
     @Override
