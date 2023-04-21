@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="splash_green">#019102</color>
+    <color name="status_bar">#016002</color>
 
     // dots inactive colors
     <color name="dark_one">#dcdcdc</color>
@@ -21,9 +22,9 @@
 
 
     <array name="active">
-        <item>@color/orange_one</item>
-        <item>@color/orange_two</item>
-        <item>@color/orange_three</item>
+        <item>@color/splash_green</item>
+        <item>@color/splash_green</item>
+        <item>@color/splash_green</item>
     </array>
 
     <array name="inactive">

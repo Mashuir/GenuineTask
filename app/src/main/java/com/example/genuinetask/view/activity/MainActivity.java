@@ -38,15 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
-            int itemId = item.getItemId();
-            if (itemId == R.id.navigation_home) {
+           // int itemId = item.getItemId();
+           // if (itemId == R.id.navigation_home) {
                 selectedFragment = new HomeFragment();
-                item.setIcon(R.drawable.ic_baseline_home_24);
-            }
+                //item.setIcon(R.drawable.ic_baseline_home_24);
+           // }
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.setCustomAnimations(androidx.transition.R.anim.fragment_fade_enter, androidx.transition.R.anim.fragment_fade_exit,
-                    androidx.transition.R.anim.fragment_fade_enter, androidx.transition.R.anim.fragment_fade_exit);
+            /*transaction.setCustomAnimations(androidx.transition.R.anim.fragment_fade_enter, androidx.transition.R.anim.fragment_fade_exit,
+                    androidx.transition.R.anim.fragment_fade_enter, androidx.transition.R.anim.fragment_fade_exit);*/
             transaction.replace(R.id.frameLayout, selectedFragment);
             transaction.addToBackStack(null);
             transaction.commit();

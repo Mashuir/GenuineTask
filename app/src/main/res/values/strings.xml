@@ -5,8 +5,7 @@
     <string name="image">image</string>
     <string name="get_first_delivery_service">Get\nFirst Delivery Service</string>
     <string name="best_quality_grocery_door_to_door">Best Quality\nGrocery Door to Door</string>
-    <string name="skip">SKIP</string>
-    <string name="next">NEXT</string>
+    <string name="skip">Skip</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="address">Address</string>
@@ -20,4 +19,5 @@
     <string name="fruits">Fruits</string>
     <string name="vegetables">Vegetables</string>
     <string name="fish">Fish</string>
+    <string name="categoryDescription">Lorem ipsum diord sit amit,\nsjjrk aosjet constectia adiposimg sot</string>
 </resources>

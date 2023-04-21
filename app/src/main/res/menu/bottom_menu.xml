@@ -13,12 +13,12 @@
 
     <item
         android:id="@+id/navigation_favourite"
-        android:icon="@drawable/ic_baseline_favorite_border_24"
+        android:icon="@drawable/icon_favourite"
         android:title="@string/favourite"/>
 
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:icon="@drawable/icon_person"
         android:title="@string/me"/>
 
 </menu>
