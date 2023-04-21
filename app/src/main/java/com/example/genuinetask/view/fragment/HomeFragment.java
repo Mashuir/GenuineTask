@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.genuinetask.R;
@@ -36,6 +39,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
+    ImageAdapter adapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -65,9 +69,23 @@ public class HomeFragment extends Fragment {
         int margin = getResources().getDimensionPixelSize(R.dimen.item_margin);
         ItemMarginDecoration decoration = new ItemMarginDecoration(margin);
         binding.categoryRecyclerView.addItemDecoration(decoration);
-        ImageAdapter adapter = new ImageAdapter(imageList);
-        binding.categoryRecyclerView.setAdapter(adapter);
+        adapter = new ImageAdapter(imageList);
+        adapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(ImageModel item) {
+                if (item == imageList.get(0)) {
+                    ProductFragment myFragment = new ProductFragment();
+                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frameLayout, myFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
 
+                }
+            }
+        });
+
+        binding.categoryRecyclerView.setAdapter(adapter);
 
     }
 

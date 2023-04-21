@@ -3,6 +3,7 @@ package com.example.genuinetask.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +18,10 @@ import java.util.List;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
     private List<ImageModel> mImageList;
+    private OnItemClickListener listener;
 
     public ImageAdapter(List<ImageModel> imageList) {
-        mImageList = imageList;
+        this.mImageList = imageList;
     }
 
 
@@ -39,11 +41,25 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.imageView.setImageResource(model.getImageResource());
         holder.category_title.setText(model.getCategoryName());
         holder.category_description.setText(model.getDescription());
+
+        holder.itemView.setOnClickListener(view -> {
+            if (listener != null) {
+                listener.onItemClick(model);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return mImageList.size();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(ImageModel item);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
