@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/category_title"
-            android:padding="4dp"
+            android:paddingHorizontal="4dp"
             android:textSize="14sp" />
 
     </RelativeLayout>

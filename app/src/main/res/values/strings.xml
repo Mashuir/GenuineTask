@@ -20,4 +20,6 @@
     <string name="vegetables">Vegetables</string>
     <string name="fish">Fish</string>
     <string name="categoryDescription">Lorem ipsum diord sit amit,\nsjjrk aosjet constectia adiposimg sot</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
 </resources>
