@@ -26,6 +26,7 @@
         android:layout_below="@id/productImage"
         android:layout_marginTop="3dp"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"/>
 

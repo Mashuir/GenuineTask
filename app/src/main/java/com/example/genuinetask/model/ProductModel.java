@@ -4,429 +4,214 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
 public class ProductModel {
 
-    @SerializedName("Success")
-    @Expose
-    private Integer success;
-    @SerializedName("error")
-    @Expose
-    private Boolean error;
-    @SerializedName("ProductList")
-    @Expose
-    private List<Product> productList;
-    @SerializedName("PageInfo")
-    @Expose
-    private PageInfo pageInfo;
+    private int Id;
+    private String Type;
+    private String ParentCode;
+    private String Name;
+    private String Code;
+    private double Price;
+    private double CostPrice;
+    private String UnitName;
+    private String CategoryName;
+    private String BrandName;
+    private String ModelName;
+    private String VariantName;
+    private String SizeName;
+    private String ColorName;
+    private double OldPrice;
+    private String ImagePath;
+    private String ProductBarcode;
+    private String Description;
+    private List<List<Integer>> ChildList;
+    private List<Object> WarehouseList;
+    private double CurrentStock;
+    private String CreateDate;
+    private String UpdateDate;
 
-    public Integer getSuccess() {
-        return success;
+    public int getId() {
+        return Id;
     }
 
-    public void setSuccess(Integer success) {
-        this.success = success;
+    public void setId(int id) {
+        Id = id;
     }
 
-    public Boolean getError() {
-        return error;
+    public String getType() {
+        return Type;
     }
 
-    public void setError(Boolean error) {
-        this.error = error;
+    public void setType(String type) {
+        Type = type;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public String getParentCode() {
+        return ParentCode;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setParentCode(String parentCode) {
+        ParentCode = parentCode;
     }
 
-    public PageInfo getPageInfo() {
-        return pageInfo;
+    public String getName() {
+        return Name;
     }
 
-    public void setPageInfo(PageInfo pageInfo) {
-        this.pageInfo = pageInfo;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public class PageInfo {
-
-        @SerializedName("PageNo")
-        @Expose
-        private Integer pageNo;
-        @SerializedName("PageSize")
-        @Expose
-        private Integer pageSize;
-        @SerializedName("PageCount")
-        @Expose
-        private Integer pageCount;
-        @SerializedName("TotalRecordCount")
-        @Expose
-        private Integer totalRecordCount;
-
-        public Integer getPageNo() {
-            return pageNo;
-        }
-
-        public void setPageNo(Integer pageNo) {
-            this.pageNo = pageNo;
-        }
-
-        public Integer getPageSize() {
-            return pageSize;
-        }
-
-        public void setPageSize(Integer pageSize) {
-            this.pageSize = pageSize;
-        }
-
-        public Integer getPageCount() {
-            return pageCount;
-        }
-
-        public void setPageCount(Integer pageCount) {
-            this.pageCount = pageCount;
-        }
-
-        public Integer getTotalRecordCount() {
-            return totalRecordCount;
-        }
-
-        public void setTotalRecordCount(Integer totalRecordCount) {
-            this.totalRecordCount = totalRecordCount;
-        }
-
+    public String getCode() {
+        return Code;
     }
 
-    public class Product {
-
-        @SerializedName("Id")
-        @Expose
-        private Integer id;
-        @SerializedName("Type")
-        @Expose
-        private String type;
-        @SerializedName("ParentCode")
-        @Expose
-        private Object parentCode;
-        @SerializedName("Name")
-        @Expose
-        private String name;
-        @SerializedName("Code")
-        @Expose
-        private String code;
-        @SerializedName("Price")
-        @Expose
-        private Double price;
-        @SerializedName("CostPrice")
-        @Expose
-        private Double costPrice;
-        @SerializedName("UnitName")
-        @Expose
-        private String unitName;
-        @SerializedName("CategoryName")
-        @Expose
-        private String categoryName;
-        @SerializedName("BrandName")
-        @Expose
-        private String brandName;
-        @SerializedName("ModelName")
-        @Expose
-        private String modelName;
-        @SerializedName("VariantName")
-        @Expose
-        private String variantName;
-        @SerializedName("SizeName")
-        @Expose
-        private String sizeName;
-        @SerializedName("ColorName")
-        @Expose
-        private String colorName;
-        @SerializedName("OldPrice")
-        @Expose
-        private Double oldPrice;
-        @SerializedName("ImagePath")
-        @Expose
-        private Object imagePath;
-        @SerializedName("ProductBarcode")
-        @Expose
-        private String productBarcode;
-        @SerializedName("Description")
-        @Expose
-        private String description;
-        @SerializedName("ChildList")
-        @Expose
-        private List<List<Integer>> childList;
-        @SerializedName("WarehouseList")
-        @Expose
-        private List<Warehouse> warehouseList;
-        @SerializedName("CurrentStock")
-        @Expose
-        private Double currentStock;
-        @SerializedName("CreateDate")
-        @Expose
-        private String createDate;
-        @SerializedName("UpdateDate")
-        @Expose
-        private String updateDate;
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public Object getParentCode() {
-            return parentCode;
-        }
-
-        public void setParentCode(Object parentCode) {
-            this.parentCode = parentCode;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public void setCode(String code) {
-            this.code = code;
-        }
-
-        public Double getPrice() {
-            return price;
-        }
-
-        public void setPrice(Double price) {
-            this.price = price;
-        }
-
-        public Double getCostPrice() {
-            return costPrice;
-        }
-
-        public void setCostPrice(Double costPrice) {
-            this.costPrice = costPrice;
-        }
-
-        public String getUnitName() {
-            return unitName;
-        }
-
-        public void setUnitName(String unitName) {
-            this.unitName = unitName;
-        }
-
-        public String getCategoryName() {
-            return categoryName;
-        }
-
-        public void setCategoryName(String categoryName) {
-            this.categoryName = categoryName;
-        }
-
-        public String getBrandName() {
-            return brandName;
-        }
-
-        public void setBrandName(String brandName) {
-            this.brandName = brandName;
-        }
-
-        public String getModelName() {
-            return modelName;
-        }
-
-        public void setModelName(String modelName) {
-            this.modelName = modelName;
-        }
-
-        public String getVariantName() {
-            return variantName;
-        }
-
-        public void setVariantName(String variantName) {
-            this.variantName = variantName;
-        }
-
-        public String getSizeName() {
-            return sizeName;
-        }
-
-        public void setSizeName(String sizeName) {
-            this.sizeName = sizeName;
-        }
-
-        public String getColorName() {
-            return colorName;
-        }
-
-        public void setColorName(String colorName) {
-            this.colorName = colorName;
-        }
-
-        public Double getOldPrice() {
-            return oldPrice;
-        }
-
-        public void setOldPrice(Double oldPrice) {
-            this.oldPrice = oldPrice;
-        }
-
-        public Object getImagePath() {
-            return imagePath;
-        }
-
-        public void setImagePath(Object imagePath) {
-            this.imagePath = imagePath;
-        }
-
-        public String getProductBarcode() {
-            return productBarcode;
-        }
-
-        public void setProductBarcode(String productBarcode) {
-            this.productBarcode = productBarcode;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public List<List<Integer>> getChildList() {
-            return childList;
-        }
-
-        public void setChildList(List<List<Integer>> childList) {
-            this.childList = childList;
-        }
-
-        public List<Warehouse> getWarehouseList() {
-            return warehouseList;
-        }
-
-        public void setWarehouseList(List<Warehouse> warehouseList) {
-            this.warehouseList = warehouseList;
-        }
-
-        public Double getCurrentStock() {
-            return currentStock;
-        }
-
-        public void setCurrentStock(Double currentStock) {
-            this.currentStock = currentStock;
-        }
-
-        public String getCreateDate() {
-            return createDate;
-        }
-
-        public void setCreateDate(String createDate) {
-            this.createDate = createDate;
-        }
-
-        public String getUpdateDate() {
-            return updateDate;
-        }
-
-        public void setUpdateDate(String updateDate) {
-            this.updateDate = updateDate;
-        }
-
+    public void setCode(String code) {
+        Code = code;
     }
 
-    public class Warehouse {
+    public double getPrice() {
+        return Price;
+    }
 
-        @SerializedName("CostCalculatedId")
-        @Expose
-        private Integer costCalculatedId;
-        @SerializedName("WhShortName")
-        @Expose
-        private String whShortName;
-        @SerializedName("CurrentStock")
-        @Expose
-        private Double currentStock;
-        @SerializedName("AverageCosting")
-        @Expose
-        private Double averageCosting;
-        @SerializedName("CostingValue")
-        @Expose
-        private Double costingValue;
-        @SerializedName("SalesValue")
-        @Expose
-        private Double salesValue;
+    public void setPrice(double price) {
+        Price = price;
+    }
 
-        public Integer getCostCalculatedId() {
-            return costCalculatedId;
-        }
+    public double getCostPrice() {
+        return CostPrice;
+    }
 
-        public void setCostCalculatedId(Integer costCalculatedId) {
-            this.costCalculatedId = costCalculatedId;
-        }
+    public void setCostPrice(double costPrice) {
+        CostPrice = costPrice;
+    }
 
-        public String getWhShortName() {
-            return whShortName;
-        }
+    public String getUnitName() {
+        return UnitName;
+    }
 
-        public void setWhShortName(String whShortName) {
-            this.whShortName = whShortName;
-        }
+    public void setUnitName(String unitName) {
+        UnitName = unitName;
+    }
 
-        public Double getCurrentStock() {
-            return currentStock;
-        }
+    public String getCategoryName() {
+        return CategoryName;
+    }
 
-        public void setCurrentStock(Double currentStock) {
-            this.currentStock = currentStock;
-        }
+    public void setCategoryName(String categoryName) {
+        CategoryName = categoryName;
+    }
 
-        public Double getAverageCosting() {
-            return averageCosting;
-        }
+    public String getBrandName() {
+        return BrandName;
+    }
 
-        public void setAverageCosting(Double averageCosting) {
-            this.averageCosting = averageCosting;
-        }
+    public void setBrandName(String brandName) {
+        BrandName = brandName;
+    }
 
-        public Double getCostingValue() {
-            return costingValue;
-        }
+    public String getModelName() {
+        return ModelName;
+    }
 
-        public void setCostingValue(Double costingValue) {
-            this.costingValue = costingValue;
-        }
+    public void setModelName(String modelName) {
+        ModelName = modelName;
+    }
 
-        public Double getSalesValue() {
-            return salesValue;
-        }
+    public String getVariantName() {
+        return VariantName;
+    }
 
-        public void setSalesValue(Double salesValue) {
-            this.salesValue = salesValue;
-        }
+    public void setVariantName(String variantName) {
+        VariantName = variantName;
+    }
 
+    public String getSizeName() {
+        return SizeName;
+    }
+
+    public void setSizeName(String sizeName) {
+        SizeName = sizeName;
+    }
+
+    public String getColorName() {
+        return ColorName;
+    }
+
+    public void setColorName(String colorName) {
+        ColorName = colorName;
+    }
+
+    public double getOldPrice() {
+        return OldPrice;
+    }
+
+    public void setOldPrice(double oldPrice) {
+        OldPrice = oldPrice;
+    }
+
+    public String getImagePath() {
+        return ImagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        ImagePath = imagePath;
+    }
+
+    public String getProductBarcode() {
+        return ProductBarcode;
+    }
+
+    public void setProductBarcode(String productBarcode) {
+        ProductBarcode = productBarcode;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public List<List<Integer>> getChildList() {
+        return ChildList;
+    }
+
+    public void setChildList(List<List<Integer>> childList) {
+        ChildList = childList;
+    }
+
+    public List<Object> getWarehouseList() {
+        return WarehouseList;
+    }
+
+    public void setWarehouseList(List<Object> warehouseList) {
+        WarehouseList = warehouseList;
+    }
+
+    public double getCurrentStock() {
+        return CurrentStock;
+    }
+
+    public void setCurrentStock(double currentStock) {
+        CurrentStock = currentStock;
+    }
+
+    public String getCreateDate() {
+        return CreateDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        CreateDate = createDate;
+    }
+
+    public String getUpdateDate() {
+        return UpdateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        UpdateDate = updateDate;
     }
 }
+

@@ -38,7 +38,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         ProductModel model = productModelList.get(position);
 
-        holder.productName.setText(model.getProductList().get(position).getName());
+        //holder.productName.setText(model.getProductList().get(position).getName());
     }
 
     @Override
