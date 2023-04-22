@@ -1,5 +1,8 @@
 package com.example.genuinetask.view.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,7 +23,9 @@ import com.example.genuinetask.model.ProductModel;
 import com.example.genuinetask.network.ApiClient;
 import com.example.genuinetask.network.ApiInterface;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +65,15 @@ public class ProductFragment extends Fragment {
             fragmentManager.popBackStack();
         });
 
+        SharedPreferences preferences = requireActivity().getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        Set<String> IDset = preferences.getStringSet("Items", new HashSet<>());
+        if (IDset.size() > 0) {
+            binding.stockSizeTV.setVisibility(View.VISIBLE);
+            binding.stockSizeTV.setText(String.valueOf(IDset.size()));
+        }else {
+            binding.stockSizeTV.setVisibility(View.GONE);
+        }
+
         binding.productRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         binding.productRecyclerView.hasFixedSize();
         loadProductsData();
@@ -76,7 +90,7 @@ public class ProductFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null && response.body().getSuccess() == 1) {
 
                     List<ProductModel> productList = response.body().getProductList();
-                    adapter = new ProductsAdapter(requireContext(), productList, binding.rootLayoutProductFragment);
+                    adapter = new ProductsAdapter(requireContext(), productList, binding.rootLayoutProductFragment,binding.stockSizeTV);
                     binding.productRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     binding.resultSizeTV.setText(productList.size() + " Products Founds");

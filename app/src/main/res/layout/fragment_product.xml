@@ -44,19 +44,37 @@
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="12dp"
-                        android:layout_toStartOf="@id/filterIV"
+                        android:layout_toStartOf="@id/filterLayout"
                         android:layout_toEndOf="@id/backArrowIV" />
 
-                    <ImageView
-                        android:id="@+id/filterIV"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                    <RelativeLayout
+                        android:id="@+id/filterLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="12dp"
-                        android:contentDescription="@string/image"
-                        android:src="@drawable/shopping_cart"
-                        app:tint="@color/white" />
+                        android:layout_marginEnd="12dp">
+
+                        <ImageView
+                            android:id="@+id/filterIV"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:contentDescription="@string/image"
+                            android:src="@drawable/shopping_cart"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:id="@+id/stockSizeTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+                            android:textColor="@color/black"
+                            android:paddingHorizontal="3dp"
+                            android:textSize="12sp"
+                            android:visibility="gone"
+                            android:background="@drawable/circle_bg"/>
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
