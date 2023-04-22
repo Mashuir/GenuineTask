@@ -48,6 +48,13 @@ public class ProductFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Retrieve the string argument
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String categoryName = bundle.getString("categoryName", "");
+            binding.categoryNameTV.setText(categoryName);
+        }
+
         binding.backArrowIV.setOnClickListener(v -> {
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             fragmentManager.popBackStack();
@@ -69,7 +76,7 @@ public class ProductFragment extends Fragment {
                 if (response.isSuccessful() && response.body() != null && response.body().getSuccess() == 1) {
 
                     List<ProductModel> productList = response.body().getProductList();
-                    adapter = new ProductsAdapter(requireContext(), productList);
+                    adapter = new ProductsAdapter(requireContext(), productList, binding.rootLayoutProductFragment);
                     binding.productRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     binding.resultSizeTV.setText(productList.size() + " Products Founds");

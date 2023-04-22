@@ -3,12 +3,16 @@ package com.example.genuinetask.view.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -70,18 +74,18 @@ public class HomeFragment extends Fragment {
         ItemMarginDecoration decoration = new ItemMarginDecoration(margin);
         binding.categoryRecyclerView.addItemDecoration(decoration);
         adapter = new ImageAdapter(imageList);
-        adapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(ImageModel item) {
-                if (item == imageList.get(0)) {
-                    ProductFragment myFragment = new ProductFragment();
-                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayout, myFragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+        adapter.setOnItemClickListener(item -> {
+            if (item == imageList.get(0)) {
+                ProductFragment myFragment = new ProductFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("categoryName", imageList.get(0).getCategoryName());
+                myFragment.setArguments(bundle);
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, myFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
-                }
             }
         });
 
@@ -91,11 +95,11 @@ public class HomeFragment extends Fragment {
 
     private void init(View view) {
 
+        binding.toolbar.inflateMenu(R.menu.toolbar_menu);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(requireActivity(), binding.drawerLayout, binding.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.setDrawerIndicatorEnabled(false);
-        toggle.setHomeAsUpIndicator(R.drawable.icon_drawer_menu);
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
 
         //---------------Slider Part
 

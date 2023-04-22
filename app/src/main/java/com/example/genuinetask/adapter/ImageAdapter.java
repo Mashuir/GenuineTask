@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
-    private List<ImageModel> mImageList;
+    private final List<ImageModel> mImageList;
     private OnItemClickListener listener;
 
     public ImageAdapter(List<ImageModel> imageList) {

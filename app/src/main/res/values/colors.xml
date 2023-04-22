@@ -15,12 +15,6 @@
     <color name="dark_two">#dcdcdc</color>
     <color name="dark_three">#dcdcdc</color>
 
-    // dots active colors
-    <color name="orange_one">#e65252</color>
-    <color name="orange_two">#e65252</color>
-    <color name="orange_three">#e65252</color>
-
-
     <array name="active">
         <item>@color/splash_green</item>
         <item>@color/splash_green</item>
