@@ -1,7 +1,10 @@
 package com.example.genuinetask.view.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -20,9 +23,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.genuinetask.R;
@@ -38,12 +43,17 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
     ImageAdapter adapter;
+    int cartItemsCount;
+    TextView badgeCount;
+    ImageView cartIconImage;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -61,6 +71,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+
 
         List<ImageModel> imageList = new ArrayList<>();
         imageList.add(new ImageModel(R.drawable.fruitscart, "Fruits and Vegetables", getString(R.string.categoryDescription)));
@@ -100,6 +111,21 @@ public class HomeFragment extends Fragment {
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        MenuItem menuItem = binding.toolbar.getMenu().findItem(R.id.menu_cart);
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        Set<String> IDs = sharedPreferences.getStringSet("Items", new HashSet<>());
+        cartItemsCount = IDs.size();
+        if (cartItemsCount == 0) {
+            menuItem.setActionView(null);
+        } else {
+
+            menuItem.setActionView(R.layout.cart_notification_badge_layout);
+            View vw = menuItem.getActionView();
+            badgeCount = vw.findViewById(R.id.badge_counter);
+            cartIconImage = vw.findViewById(R.id.cartIconImage);
+            badgeCount.setText(String.valueOf(cartItemsCount));
+        }
+
 
         //---------------Slider Part
 
@@ -119,4 +145,5 @@ public class HomeFragment extends Fragment {
         sliderView.setScrollTimeInSec(10); //set scroll delay in seconds :
         sliderView.startAutoCycle();
     }
+
 }
