@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     List<ProductModel> productModelList;
     RelativeLayout layout;
     TextView stockSizeTV;
+    int count = 0;
 
     public ProductsAdapter(Context context, List<ProductModel> productModelList, RelativeLayout rootLayoutProductFragment, TextView stockSizeTV) {
         this.context = context;
@@ -73,10 +75,45 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             if (updatedIDs.contains(model.getCode())) {
                 updatedIDs.remove(model.getCode());
                 holder.favouriteImageView.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                holder.addToCartTV.setVisibility(View.VISIBLE);
+                holder.amountLayout.setVisibility(View.GONE);
 
             } else {
                 updatedIDs.add(model.getCode());
                 holder.favouriteImageView.setImageResource(R.drawable.ic_baseline_favorite_24);
+                holder.addToCartTV.setVisibility(View.GONE);
+                holder.amountLayout.setVisibility(View.VISIBLE);
+                Snackbar.make(layout, "Add to Cart", BaseTransientBottomBar.LENGTH_SHORT).show();
+            }
+
+            if (updatedIDs.size() > 0) {
+                stockSizeTV.setVisibility(View.VISIBLE);
+                stockSizeTV.setText(String.valueOf(updatedIDs.size()));
+            }else {
+                stockSizeTV.setVisibility(View.GONE);
+            }
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putStringSet("Items", updatedIDs);
+            editor.apply();
+
+        });
+
+        holder.addToCartTV.setOnClickListener(v -> {
+
+            SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            Set<String> IDs = sharedPreferences.getStringSet("Items", new HashSet<>());
+
+            Set<String> updatedIDs = new HashSet<>(IDs);
+
+            if (updatedIDs.contains(model.getCode())) {
+                updatedIDs.remove(model.getCode());
+                holder.favouriteImageView.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+
+            } else {
+                updatedIDs.add(model.getCode());
+                holder.favouriteImageView.setImageResource(R.drawable.ic_baseline_favorite_24);
+                holder.addToCartTV.setVisibility(View.GONE);
+                holder.amountLayout.setVisibility(View.VISIBLE);
                 Snackbar.make(layout, "Add to Cart", BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
@@ -97,7 +134,22 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         if (IDset.contains(model.getCode())) {
             holder.favouriteImageView.setImageResource(R.drawable.ic_baseline_favorite_24);
+            holder.addToCartTV.setVisibility(View.GONE);
+            holder.amountLayout.setVisibility(View.VISIBLE);
         }
+
+        holder.decrementAmount.setOnClickListener(v -> {
+            if (count > 1) {
+                count--;
+                holder.amountTV.setText(String.valueOf(count)); // update the text of the TextView
+            }
+        });
+
+        holder.incrementAmount.setOnClickListener(v -> {
+
+            count++;
+            holder.amountTV.setText(String.valueOf(count));
+        });
     }
 
     @Override
@@ -107,8 +159,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView productImage, favouriteImageView;
-        TextView productName, productPriceTV, productOfferPriceTV;
+        ImageView productImage, favouriteImageView, incrementAmount, decrementAmount;
+        TextView productName, productPriceTV, productOfferPriceTV, addToCartTV, amountTV;
+        LinearLayout amountLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,6 +171,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             productName = itemView.findViewById(R.id.productName);
             productPriceTV = itemView.findViewById(R.id.productPriceTV);
             productOfferPriceTV = itemView.findViewById(R.id.productOfferPriceTV);
+            addToCartTV = itemView.findViewById(R.id.addToCartTV);
+            amountLayout = itemView.findViewById(R.id.amountLayout);
+            incrementAmount = itemView.findViewById(R.id.incrementAmount);
+            amountTV = itemView.findViewById(R.id.amountTV);
+            decrementAmount = itemView.findViewById(R.id.decrementAmount);
 
         }
     }
